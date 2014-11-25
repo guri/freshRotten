@@ -1,0 +1,8 @@
+{
+  "generator-angular-famous-ionic": {
+    "ionic": true,
+    "famous": true,
+    "fontawesome": false,
+    "bootstrap": false
+  }
+}

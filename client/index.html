@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en" ng-app="main">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sample app</title>
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+
+<body ng-controller="main.freshrotten.searchRottenCtrl as searchCtrl">
+    <!--[if lt IE 7]>
+            <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+    <![endif]-->
+ <!--    <ui-view>
+    	<h2 ng-controller="main.common.hello as helloCtrl">{{helloCtrl.message}}</h2>
+	</ui-view> -->
+
+    	<!-- <h2 ng-controller="main.freshrotten.searchRottenCtrl as searchCtrl">{{searchCtrl.message}}</h2>
+ -->
+
+
+    <ion-header-bar class="bar bar-header bar-energized">
+        <h1 class="title"> Fresh Tommatos </h1>
+    </ion-header-bar>
+
+    <ion-header-bar class="bar bar-subheader">
+
+         <label class="item-input-wrapper item-input-inset">
+                <i class="icon ion-search placeholder-icon"></i>
+                <input type="search" placeholder="Search">
+                <i class="icon ion-close placeholder-icon"></i>
+        </label>
+       <!--  <button class="button button-clear">
+            X                
+        </button> -->
+
+            <!-- There is a nice ion-search directive in http://codepen.io/gastonbesada/pen/eqvJK should use it after basic implimentation-->
+    </ion-header-bar>
+
+
+    <ion-content class="has-subheader">
+        <ion-list>
+            <ion-item  ng-repeat="movie in searchCtrl.movies">
+                <a class="item item-thumbnail-left" href="#">
+                    <img ng-src="./scripts/freshrotten/media/{{movie.thumbnailUrl}}" />
+                    <h2> {{movie.title}} </h2>
+                    <p> {{movie.description}} </p>
+
+<!--                     <p> {{movie.thumbnailUrl}} </p>
+ -->               
+                </a>
+            </ion-item>
+        </ion-list>
+    <ion-content>
+
+
+    <script src="scripts/bundle.js"></script>
+</body>
+
+</html>
