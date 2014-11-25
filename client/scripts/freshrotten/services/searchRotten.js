@@ -3,7 +3,8 @@ var servicename = 'searchRotten';
 
 module.exports = function(app) {
 
-    var dependencies = ["$http"];
+    var dependencies = [];
+    //var dependencies = ["$http"];
 
     function service() {
         var isInitialized = false;

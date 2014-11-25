@@ -13,7 +13,7 @@ module.exports = function(namespace) {
     var app = angular.module(fullname, ['ui.router', 'ionic', 'famous.angular']);
     // inject:folders start
     require('./controllers')(app);
-    require('./media')(app);
+    //require('./media')(app);
     require('./services')(app);
 
     // inject:folders end

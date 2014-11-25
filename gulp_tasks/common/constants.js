@@ -7,7 +7,7 @@ module.exports = function() {
     var clientFolder = 'client';
     var constants = {
         clientFolder: clientFolder,
-        repository: 'https://github.com/guri/try_gen',
+        repository: 'https://github.com/guri/rottenfresh',
         versionFiles: ['./package.json', './bower.json'],
         growly: {
             notify: false,

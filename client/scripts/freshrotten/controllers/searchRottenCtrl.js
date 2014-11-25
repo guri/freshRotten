@@ -4,7 +4,9 @@ var controllername = 'searchRottenCtrl';
 module.exports = function(app) {
     /*jshint validthis: true */
     console.log("bla");
-    var deps = ['searchRottenProvider'];
+
+    //var deps=[];
+    var deps = [app.name + '.searchRotten'];
 
     function controller(searchRotten) {
         console.log("blabla again");
