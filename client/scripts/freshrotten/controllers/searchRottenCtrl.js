@@ -37,7 +37,7 @@ module.exports = function(app) {
         ];
 
         console.log("3+4=" + searchRotten.add(3,4));
-        console.log("http : " + searchRotten.searchMovies("moviesssss"));
+        console.log("http : " + searchRotten.searchMovies("zed"));
 
 
         var activate = function() {

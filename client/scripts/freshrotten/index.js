@@ -26,5 +26,11 @@ module.exports = function(namespace) {
             });
         }
     ]);
+
+    // app.config([app.name + '.searchRottenProvider', '$httpProvider',function(searchRotten, $httpProvider) {
+    //     searchRotten.init();
+    // }]);
+
     return app;
 };
+
