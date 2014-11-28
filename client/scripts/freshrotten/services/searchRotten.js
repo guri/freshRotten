@@ -31,10 +31,12 @@ module.exports = function(app) {
                         //var rottenApiUrl="http://api.rottentomatoes.com/api/public/v1.0/movies.json?";
                         var rottenApiUrl = 'http://api.rottentomatoes.com/api/public/v1.0/movies.json?q=Toy&apikey=7ue5rxaj9xn4mhbmsuexug54';
                         var res = $http.jsonp(rottenApiUrl + '&callback=JSON_CALLBACK')
-                             .success(function(data) {console.log("success! data: ", data)})
-                             .error(function(data,status) {console.log("rotten call failed. data returned :" + data);});
-                         console.log("res is :" + res);
-
+                             .success(function(data) {
+                                console.log("success! data: ", data)
+                                return data;
+                              })
+                             .error(function(data,status) {console.log("rotten call failed");});
+                        
                         // The rotten REST api sample :
                         // http://api.rottentomatoes.com/api/public/v1.0/movies.json?q=Toy&apikey=7ue5rxaj9xn4mhbmsuexug54
                  
