@@ -28,7 +28,7 @@
 
          <label class="item-input-wrapper item-input-inset">
                 <i class="icon ion-search placeholder-icon"></i>
-                <input type="search" placeholder="Search" ng-model="searchCtrl.query" ng-change="searchCtrl.searchUpdated()">
+                <input type="search" placeholder="Search" ng-model="searchCtrl.query" ng-change="searchCtrl.searchUpdated(searchCtrl.query)">
                 <i class="icon ion-close placeholder-icon"></i>
         </label>
        <!--  <button class="button button-clear">
@@ -63,7 +63,11 @@
 
             </div>
           </div> -->
-    <ion-content>
+
+<!--         <ion-infinite-scroll on-infinite="searchCtrl.loadMore()" distance="20%">
+          </ion-infinite-scroll>
+        <ion-content> -->
+
 
 
     <script src="scripts/bundle.js"></script>
