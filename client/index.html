@@ -28,7 +28,7 @@
 
          <label class="item-input-wrapper item-input-inset">
                 <i class="icon ion-search placeholder-icon"></i>
-                <input type="search" placeholder="Search" ng-model="searchCtrl.query">
+                <input type="search" placeholder="Search" ng-model="searchCtrl.query" ng-change="searchCtrl.searchUpdated()">
                 <i class="icon ion-close placeholder-icon"></i>
         </label>
        <!--  <button class="button button-clear">
@@ -45,10 +45,7 @@
                 <a class="item item-thumbnail-left" href="#">
                     <img ng-src="{{movie.posters.thumbnail}}" />
                     <h2> {{movie.title}} </h2>
-                    <p> {{movie.synopsis}} </p>
-
-<!--                     <p> {{movie.thumbnailUrl}} </p>
- -->               
+                    <p> {{movie.synopsis}} </p>             
                 </a>
             </ion-item>
         </ion-list>
