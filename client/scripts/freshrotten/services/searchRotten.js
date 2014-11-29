@@ -29,18 +29,25 @@ module.exports = function(app) {
                         console.log("query : -" + query + "-");
                         var apikey = '7ue5rxaj9xn4mhbmsuexug54';
                         var rottenApiUrl = 'http://api.rottentomatoes.com/api/public/v1.0/movies.json';
-                        var queryUrl = '?q=' + query;
+                        var queryUrl = '?q=' + encodeURIComponent(query);
                         var apiKeyUrl = "&apikey=" + apikey;
                         var requestUrl = rottenApiUrl + queryUrl + apiKeyUrl + '&callback=JSON_CALLBACK';
                         
+                        // var res = $http.jsonp(requestUrl)
+                        //      .success(function(data) {
+                        //         console.log("success! data: ", data)
+                        //         return data;
+                        //       })
+                        //      .error(function(data,status) {console.log("rotten call failed");});
+    
+
                         var res = $http.jsonp(requestUrl)
-                             .success(function(data) {
-                                console.log("success! data: ", data)
-                                return data;
-                              })
-                             .error(function(data,status) {console.log("rotten call failed");});
-                        
-                        console.log("apikey : " + $httpProvider.defaults.headers.common["apikey"]);
+                             .then(function(response) {
+                                //console.log("success! data: ", response.data);
+                                return response.data;
+                              }, function(response,status) {console.log("rotten call failed")});
+
+                        //console.log("apikey : " + $httpProvider.defaults.headers.common["apikey"]);
                         // The rotten REST api sample :
                         // http://api.rottentomatoes.com/api/public/v1.0/movies.json?q=Toy&apikey=7ue5rxaj9xn4mhbmsuexug54
                  
@@ -50,14 +57,14 @@ module.exports = function(app) {
                         //     .error(function(data,status) {console.log("rotten call failed. data returned :" + data);});
                         // console.log("res is :" + res);
 
-
+                        return res;
 
                     };
 
                     return {
                         isInitialized: isInitialized,
                         add: add,
-                        searchMovies: searchMovies
+                        searchMovies: searchMovies,
                     };
                 }
             ]

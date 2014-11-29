@@ -36,8 +36,16 @@ module.exports = function(app) {
             }                        
         ];
 
-        console.log("3+4=" + searchRotten.add(3,4));
-        console.log("http : " + searchRotten.searchMovies("zed"));
+        //console.log("3+4=" + searchRotten.add(3,4));
+        //console.log("http : " + searchRotten.searchMovies("a"));
+
+        var res = searchRotten.searchMovies("Toy");
+        res.then(function(data) {
+            console.log(data);
+            vm.movies = data.movies;
+        });
+        
+        //vm.movies = res[0];
 
 
         var activate = function() {
