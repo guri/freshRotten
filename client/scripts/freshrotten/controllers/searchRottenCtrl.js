@@ -6,13 +6,14 @@ module.exports = function(app) {
     console.log("bla");
 
     //var deps=[];
-    var deps = [app.name + '.searchRotten'];
+    var deps = ['$scope', app.name + '.searchRotten'];
 
-    function controller(searchRotten) {
+    function controller($scope,searchRotten) {
         console.log("blabla again");
         var vm = this;
         vm.message = 'Something is rotten here !';
 
+        vm.movies = [];
         /* vm.movies = [
             {
                 "title":"bla will return",
@@ -42,9 +43,11 @@ module.exports = function(app) {
         
         vm.searchUpdated = function(query) {  // call for search in rotten api
             console.log(query);
+            searchRotten.searchReset();
+            //vm.movies = [];
             var res = searchRotten.searchMovies(query);
             res.then(function(data) {
-                //console.log(data);
+                console.log(data);
                 vm.movies = data.movies;
             });
 
@@ -52,17 +55,26 @@ module.exports = function(app) {
 
 
         // support loading more movies for inifinite scroll vs. pagination.
-        vm.loadMore = function(vm.query) {
-            searchRotten.searchMovies(vm.query).then(function(data) {
+        vm.loadMore = function() {
+            console.log("loadMore");
+            var res = searchRotten.searchMovies(vm.query)
+            res.then(function(data) {
               //useItems(items);
-              vm.movies = data.movies;
-              //vm.$broadcast('scroll.infiniteScrollComplete');
+              console.log(data);
+              console.log("pre");
+              console.log(vm.movies);
+              vm.movies = vm.movies.concat(data.movies);
+              console.log("post");
+              console.log(vm.movies);
+
+              $scope.$broadcast('scroll.infiniteScrollComplete');
             });
         };
 
-        // vm.$on('$stateChangeSuccess', function() {
-        //     vm.loadMore();
-        // });
+        $scope.$on('$stateChangeSuccess', function() {
+            console.log('stateChangeSuccess');
+            vm.loadMore();
+        });
 
         //vm.movies = res[0];
 

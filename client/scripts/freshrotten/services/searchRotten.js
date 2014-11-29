@@ -8,6 +8,8 @@ module.exports = function(app) {
 
     function service() {
         var isInitialized = false;
+        var page = 1;  // rotten api return an array limited with page_limit elements, 
+                        // to get more items page property in query should be used.
 
         var init = function() {
             isInitialized = true;
@@ -16,6 +18,7 @@ module.exports = function(app) {
 
         return {
             // initialization
+
             init: init,
 
             $get: ['$q', '$http',
@@ -26,13 +29,13 @@ module.exports = function(app) {
 
                     var searchMovies = function(query){
 
-
+                        page = page + 1; 
                         console.log("query : -" + query + "-");
                         var apikey = '7ue5rxaj9xn4mhbmsuexug54';
                         var rottenApiUrl = 'http://api.rottentomatoes.com/api/public/v1.0/movies.json';
                         var queryUrl = '?q=' + encodeURIComponent(query);
                         var pageLimitUrl = "&page_limit=50";
-                        var pageUrl = "&page=1";
+                        var pageUrl = "&page=" + page;
                         var apiKeyUrl = "&apikey=" + apikey;
                         var requestUrl = rottenApiUrl + queryUrl + pageLimitUrl + pageUrl + apiKeyUrl + '&callback=JSON_CALLBACK';
                         
@@ -46,7 +49,7 @@ module.exports = function(app) {
 
                         var res = $http.jsonp(requestUrl)
                              .then(function(response) {
-                                console.log("success! data: ", response.data);
+                                //console.log("success! data: ", response.data);
                                 return response.data;
                               }, function(response,status) {console.log("rotten call failed")});
 
@@ -64,10 +67,16 @@ module.exports = function(app) {
 
                     };
 
+                    var searchReset = function() {
+                        page = 1;
+                    };
+
+
                     return {
                         isInitialized: isInitialized,
                         add: add,
                         searchMovies: searchMovies,
+                        searchReset: searchReset
                     };
                 }
             ]
