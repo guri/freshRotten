@@ -38,10 +38,11 @@
             <!-- There is a nice ion-search directive in http://codepen.io/gastonbesada/pen/eqvJK should use it after basic implimentation-->
     </ion-header-bar>
 
-
+    <div ng-if="searchCtrl.query">
+        <p> Bla </p>
     <ion-content class="has-subheader">
         <ion-list>
-            <ion-item ng-repeat="movie in searchCtrl.movies">
+            <ion-item ng-repeat="movie in searchCtrl.movies track by movie.id">
                 <a class="item item-thumbnail-left" href="#">
                     <img ng-src="{{movie.posters.thumbnail}}" />
                     <h2> {{movie.title}} </h2>
@@ -66,7 +67,8 @@
 
         <ion-infinite-scroll on-infinite="searchCtrl.loadMore()" distance="20%">
           </ion-infinite-scroll>
-        <ion-content>
+    <ion-content>
+    </div>
 
 
 

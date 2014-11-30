@@ -28,8 +28,8 @@ module.exports = function(app) {
                     };
 
                     var searchMovies = function(query){
+                        if (query===null || page==26) return [];
 
-                        page = page + 1; 
                         console.log("query : -" + query + "-");
                         var apikey = '7ue5rxaj9xn4mhbmsuexug54';
                         var rottenApiUrl = 'http://api.rottentomatoes.com/api/public/v1.0/movies.json';
@@ -51,7 +51,7 @@ module.exports = function(app) {
                              .then(function(response) {
                                 //console.log("success! data: ", response.data);
                                 return response.data;
-                              }, function(response,status) {console.log("rotten call failed")});
+                              }, function(response,status) {console.log("rotten call failed"); return [];});
 
                         //console.log("apikey : " + $httpProvider.defaults.headers.common["apikey"]);
                         // The rotten REST api sample :
@@ -62,6 +62,7 @@ module.exports = function(app) {
                         //     .success(function(data) {console.log("success! data: ", data)})
                         //     .error(function(data,status) {console.log("rotten call failed. data returned :" + data);});
                         // console.log("res is :" + res);
+                        page = page + 1; 
 
                         return res;
 
