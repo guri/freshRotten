@@ -22,12 +22,17 @@ module.exports = function(namespace) {
             $stateProvider.state('home', {
                 url: '/',
                 template: require('./views/home.html'),
-                //controller: 'main.freshrotten.searchRottenCtrl as searchCtrl'
+                controller: 'main.freshrotten.searchRottenCtrl as searchCtrl'
             });
 
             $stateProvider.state('movie', {
                 url: '/movie',
-                template: require('./views/moviepage.html')
+                template: require('./views/moviepage.html'),
+                controller: 'main.freshrotten.movieCtrl as movieCtrl'
+                // onEnter: function(movie.id) {
+                //     movie = searchRotten.getMovieInfo(movie.id);
+                //     movie = searchRotten.getMovieReviews(movie.id);
+                // }
             });            
         }
     ]);

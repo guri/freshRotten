@@ -1,34 +1,24 @@
 
 <!-- the movie page url should be with the movie parameter -->
 
-<p> Bla Bla </p>
 
-<ion-checkbox ng-model="isChecked">Checkbox Label</ion-checkbox>
+<!-- <ion-checkbox ng-model="isChecked">Checkbox Label</ion-checkbox>
+ -->
 
-<!-- <html>
-<head>
-	<title>
 
-	</title>
-</head>
-<body ng-controller="movieCtrl as movieCtrl">
-	<ion-header-bar class="bar bar-header bar-energized">
-        <h1 class="title"> Fresh Tommatos </h1>
-        <img id="logo" ng-src="./media/logo.png" style="width:80px;"/>
-    </ion-header-bar>
-
-    <div>
-       <a class="item item-thumbnail-left" href="#">
-            <img ng-src="{{movie.posters.thumbnail}}" />
-            <h2> {{movie.title}} </h2>
-            <p> {{movie.synopsis}} </p>             
-       </a>
-
-    </div>
+<!-- <body ng-controller="movieCtrl as movieCtrl">
+ -->
 
     <ion-content>
+        <div>
+            <img ng-src="{{movieCtrl.movie.posters.thumbnail}}" />
+            <h2> {{movieCtrl.movie.title}} </h2>
+            <p> {{movieCtrl.movie.synopsis}} </p>             
+
+        </div>
+
         <ion-list>
-            <ion-item ng-repeat="review in movieCtrl.review track by review.id">
+            <ion-item ng-repeat="review in movieCtrl.reviews">
                 <a class="item item-thumbnail-left" href="#">
                     <img ng-src="{{review.posters.thumbnail}}" />
                     <h2> {{review.user}} </h2>
@@ -60,5 +50,5 @@
 
 
 
-</body>
+<!-- </body>
 </html> -->

@@ -9,11 +9,38 @@ module.exports = function(app) {
     function controller($scope,$q, searchRotten) {
         var vm = this;
         vm.message = 'Hello World';
-        vm.movies = {
+        vm.movie = {
                 "title":"bla will return",
                 "synopsis":"bla bla movie bla",
                 "posters.thumbnail":"1.jpg"
         }
+
+        vm.reviews = [
+            {
+                "title":"bla will return",
+                "synopsis":"bla bla movie bla",
+                "posters.thumbnail":"1.jpg"
+            }, 
+           {    
+                "title":"Bam man",
+                "synopsis":"bam bam dam dam do",
+                "posters.thumbnail":"2.jpg"
+            },
+            {
+                "title":"Bla in the forest",
+                "synopsis":"bla bla movie bla",
+                "posters.thumbnail":"1.jpg"
+            }, 
+           {
+                "title":"Bam man 2",
+                "synopsis":"bam bam dam dam do",
+                "posters.thumbnail":"2.jpg"
+            }                           //movies mock
+        ]; 
+
+        //movie = searchRotten.getMovieInfo(movie.id);
+        //reviews = searchRotten.getMovieReviews(movie.id);
+
 
         var activate = function() {
 
