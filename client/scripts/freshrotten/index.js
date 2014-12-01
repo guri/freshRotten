@@ -20,7 +20,7 @@ module.exports = function(namespace) {
         function($stateProvider, $urlRouterProvider) {
             $urlRouterProvider.otherwise('/');
             $stateProvider.state('home', {
-                url: '/',
+                url: '/home',
                 template: require('./views/home.html')
             });
 

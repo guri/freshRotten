@@ -20,11 +20,15 @@
  -->
 
 
-    <ion-header-bar class="bar bar-header bar-energized">
+    <ion-header-bar class="bar bar-header bar-energized"><div>
         <h1 class="title"> Fresh Tommatos </h1>
         <img id="logo" ng-src="./media/logo.png" style="width:80px;"/>
     </ion-header-bar>
 
+    <!-- <div ion-nav-view animation="slide-left-right"> -->
+    <ui-view></ui-view>
+    
+    <!-- <div ui-view> -->
     <ion-header-bar class="bar bar-subheader">
 
          <label class="item-input-wrapper item-input-inset">
@@ -44,7 +48,7 @@
         <ion-content class="has-subheader">
             <ion-list>
                 <ion-item ng-repeat="movie in searchCtrl.movies track by movie.id">
-                    <a class="item item-thumbnail-left" href="#">
+                    <a class="item item-thumbnail-left" href="#" ui-sref="movie">
                         <img ng-src="{{movie.posters.thumbnail}}" />
                         <h2> {{movie.title}} </h2>
                         <p> {{movie.synopsis}} </p>             
@@ -70,7 +74,6 @@
               </ion-infinite-scroll>
         <ion-content>
     </div>
-
 
 
     <script src="scripts/bundle.js"></script>
