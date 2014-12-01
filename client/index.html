@@ -8,13 +8,12 @@
     <link rel="stylesheet" href="styles/main.css">
 </head>
 
-<body ng-controller="main.freshrotten.searchRottenCtrl as searchCtrl">
+<body ng-controller="main.freshrotten.searchRottenCtrl as searchCtrl"> 
+    <!-- ng-controller="main.freshrotten.searchRottenCtrl as searchCtrl"> -->
     <!--[if lt IE 7]>
             <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
     <![endif]-->
- <!--    <ui-view>
-    	<h2 ng-controller="main.common.hello as helloCtrl">{{helloCtrl.message}}</h2>
-	</ui-view> -->
+
 
     	<!-- <h2 ng-controller="main.freshrotten.searchRottenCtrl as searchCtrl">{{searchCtrl.message}}</h2>
  -->
@@ -22,13 +21,14 @@
 
     <ion-header-bar class="bar bar-header bar-energized"><div>
         <h1 class="title"> Fresh Tommatos </h1>
-        <img id="logo" ng-src="./media/logo.png" style="width:80px;"/>
+        <img id="logo" ng-src="/media/logo.png" style="width:80px;"/>
     </ion-header-bar>
 
     <!-- <div ion-nav-view animation="slide-left-right"> -->
-    <ui-view></ui-view>
+ 
     
-    <!-- <div ui-view> -->
+ 
+ 
     <ion-header-bar class="bar bar-subheader">
 
          <label class="item-input-wrapper item-input-inset">
@@ -43,9 +43,13 @@
             <!-- There is a nice ion-search directive in http://codepen.io/gastonbesada/pen/eqvJK should use it after basic implimentation-->
     </ion-header-bar>
 
-    <div ng-if="searchCtrl.query">
-        
+    <!-- <ion-checkbox ng-model="isChecked">Checkbox Label</ion-checkbox>
+ -->
+    <!-- <div ng-if="searchCtrl.query"> -->
+
+
         <ion-content class="has-subheader">
+            <ion-checkbox ng-model="isChecked">Checkbox Label</ion-checkbox>
             <ion-list>
                 <ion-item ng-repeat="movie in searchCtrl.movies track by movie.id">
                     <a class="item item-thumbnail-left" href="#" ui-sref="movie">
@@ -71,9 +75,10 @@
               </div> -->
 
             <ion-infinite-scroll on-infinite="searchCtrl.loadMore()" distance="30" ng-if="">
-              </ion-infinite-scroll>
-        <ion-content>
-    </div>
+            </ion-infinite-scroll>
+        </ion-content>
+
+<!-- </div> -->
 
 
     <script src="scripts/bundle.js"></script>

@@ -20,8 +20,9 @@ module.exports = function(namespace) {
         function($stateProvider, $urlRouterProvider) {
             $urlRouterProvider.otherwise('/');
             $stateProvider.state('home', {
-                url: '/home',
-                template: require('./views/home.html')
+                url: '/',
+                template: require('./views/home.html'),
+                //controller: 'main.freshrotten.searchRottenCtrl as searchCtrl'
             });
 
             $stateProvider.state('movie', {
