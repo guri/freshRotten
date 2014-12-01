@@ -22,6 +22,7 @@
 
     <ion-header-bar class="bar bar-header bar-energized">
         <h1 class="title"> Fresh Tommatos </h1>
+        <img id="logo" ng-src="./media/logo.png" style="width:80px;"/>
     </ion-header-bar>
 
     <ion-header-bar class="bar bar-subheader">
@@ -39,35 +40,35 @@
     </ion-header-bar>
 
     <div ng-if="searchCtrl.query">
-        <p> Bla </p>
-    <ion-content class="has-subheader">
-        <ion-list>
-            <ion-item ng-repeat="movie in searchCtrl.movies track by movie.id">
-                <a class="item item-thumbnail-left" href="#">
+        
+        <ion-content class="has-subheader">
+            <ion-list>
+                <ion-item ng-repeat="movie in searchCtrl.movies track by movie.id">
+                    <a class="item item-thumbnail-left" href="#">
+                        <img ng-src="{{movie.posters.thumbnail}}" />
+                        <h2> {{movie.title}} </h2>
+                        <p> {{movie.synopsis}} </p>             
+                    </a>
+                </ion-item>
+            </ion-list>
+
+     <!--        <div class="list">
+                <div class="item my-item"
+                  collection-repeat="movie in searchCtrl.movies"
+                  collection-item-width="'100%'"
+                  collection-item-height="'20%'"
+                  ng-style="{height: 20}">
+
                     <img ng-src="{{movie.posters.thumbnail}}" />
                     <h2> {{movie.title}} </h2>
-                    <p> {{movie.synopsis}} </p>             
-                </a>
-            </ion-item>
-        </ion-list>
+                    <p> {{movie.synopsis}} </p>    
 
- <!--        <div class="list">
-            <div class="item my-item"
-              collection-repeat="movie in searchCtrl.movies"
-              collection-item-width="'100%'"
-              collection-item-height="'20%'"
-              ng-style="{height: 20}">
+                </div>
+              </div> -->
 
-                <img ng-src="{{movie.posters.thumbnail}}" />
-                <h2> {{movie.title}} </h2>
-                <p> {{movie.synopsis}} </p>    
-
-            </div>
-          </div> -->
-
-        <ion-infinite-scroll on-infinite="searchCtrl.loadMore()" distance="30" ng-if="">
-          </ion-infinite-scroll>
-    <ion-content>
+            <ion-infinite-scroll on-infinite="searchCtrl.loadMore()" distance="30" ng-if="">
+              </ion-infinite-scroll>
+        <ion-content>
     </div>
 
 

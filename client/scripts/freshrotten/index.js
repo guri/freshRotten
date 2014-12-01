@@ -13,7 +13,6 @@ module.exports = function(namespace) {
     var app = angular.module(fullname, ['ui.router', 'ionic', 'famous.angular']);
     // inject:folders start
     require('./controllers')(app);
-    //require('./media')(app);
     require('./services')(app);
 
     // inject:folders end
@@ -24,12 +23,13 @@ module.exports = function(namespace) {
                 url: '/',
                 template: require('./views/home.html')
             });
+
+            $stateProvider.state('movie', {
+                url: '/movie',
+                template: require('./views/moviepage.html')
+            });            
         }
     ]);
-
-    // app.config([app.name + '.searchRottenProvider', '$httpProvider',function(searchRotten, $httpProvider) {
-    //     searchRotten.init();
-    // }]);
 
     return app;
 };
