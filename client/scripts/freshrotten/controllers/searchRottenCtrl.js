@@ -6,15 +6,16 @@ module.exports = function(app) {
     console.log("bla");
 
     //var deps=[];
-    var deps = ['$scope', app.name + '.searchRotten'];
+    var deps = ['$scope', '$q',app.name + '.searchRotten'];
 
-    function controller($scope,searchRotten) {
+    function controller($scope,$q, searchRotten) {
         console.log("blabla again");
         var vm = this;
         vm.message = 'Something is rotten here !';
 
         vm.movies = [];
-        /* vm.movies = [
+
+         /* vm.movies = [
             {
                 "title":"bla will return",
                 "synopsis":"bla bla movie bla",
@@ -43,13 +44,13 @@ module.exports = function(app) {
         
         vm.searchUpdated = function(query) {  // call for search in rotten api
             console.log(query);
+
             searchRotten.searchReset();
- 
             var res = searchRotten.searchMovies(query);
             res.then(function(data) {
                 vm.movies = [];
                 console.log(data);
-                vm.movies = data.movies;
+                vm.movies = data.data.movies;
             });
 
         };
@@ -57,26 +58,18 @@ module.exports = function(app) {
 
         // support loading more movies for inifinite scroll vs. pagination.
         vm.loadMore = function() {
-                        console.log("loadMore");
+            console.log("loadMore");
 
-            console.log("query : ");
-            console.log(vm.query);
-            console.log(vm.movies);
+ 
             if (vm.query == null) {
-                //$scope.$broadcast('scroll.infiniteScrollComplete');
+                $scope.$broadcast('scroll.infiniteScrollComplete');
                 return [];
             }
 
             var res = searchRotten.searchMovies(vm.query)
             res.then(function(data) {
-              //useItems(items);
               console.log(data);
-              console.log("pre");
-              console.log(vm.movies);
-              vm.movies = vm.movies.concat(data.movies);
-              console.log("post");
-              console.log(vm.movies);
-
+              vm.movies = vm.movies.concat(data.data.movies);
               $scope.$broadcast('scroll.infiniteScrollComplete');
             });
         };

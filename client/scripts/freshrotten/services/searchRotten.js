@@ -11,6 +11,8 @@ module.exports = function(app) {
         var page = 1;  // rotten api return an array limited with page_limit elements, 
                         // to get more items page property in query should be used.
 
+        var res = null;
+
         var init = function() {
             isInitialized = true;
         };
@@ -23,9 +25,6 @@ module.exports = function(app) {
 
             $get: ['$q', '$http',
                 function($q, $http) {
-                    var add = function(a, b) {
-                        return a + b;
-                    };
 
                     var searchMovies = function(query){
                         if (query===null || page==26) return [];
@@ -45,13 +44,14 @@ module.exports = function(app) {
                         //         return data;
                         //       })
                         //      .error(function(data,status) {console.log("rotten call failed");});
-    
-
-                        var res = $http.jsonp(requestUrl)
-                             .then(function(response) {
-                                //console.log("success! data: ", response.data);
-                                return response.data;
-                              }, function(response,status) {console.log("rotten call failed"); return [];});
+                        if (res != null) res.resolve();
+                        res= $q.defer();
+                        res = $http.jsonp(requestUrl);
+                             // .then(function(response) {
+                             //    //console.log("success! data: ", response.data);
+                             //    return response.data;
+                             //  }, function(response,status) {console.log("rotten call failed"); return [];});
+                        console.log(res);
 
                         //console.log("apikey : " + $httpProvider.defaults.headers.common["apikey"]);
                         // The rotten REST api sample :
@@ -75,7 +75,6 @@ module.exports = function(app) {
 
                     return {
                         isInitialized: isInitialized,
-                        add: add,
                         searchMovies: searchMovies,
                         searchReset: searchReset
                     };
