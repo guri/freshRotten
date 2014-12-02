@@ -48,7 +48,7 @@ module.exports = function(app) {
                         //         return data;
                         //       })
                         //      .error(function(data,status) {console.log("rotten call failed");});
-                        if (res != null) res.resolve();
+                        //if (res != null) res.resolve();
                         res= $q.defer();
                         res = $http.jsonp(requestUrl);
                              // .then(function(response) {

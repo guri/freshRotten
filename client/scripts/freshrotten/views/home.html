@@ -1,4 +1,6 @@
 
+ <div ui-view>
+
  <!-- <div ng-controller="main.freshrotten.searchRottenCtrl as searchCtrl"> -->
 <ion-header-bar class="bar bar-subheader">
 
@@ -24,7 +26,7 @@
 <!--         	<ion-checkbox ng-model="isChecked">Checkbox Label</ion-checkbox> -->
             <ion-list>
                 <ion-item ng-repeat="movie in searchCtrl.movies track by movie.id">
-                    <a class="item item-thumbnail-left" href="#" ui-sref="movie({movie_id: movie.id})">
+                    <a class="item item-thumbnail-left" href="#" ui-sref="home.movie({movie_id: movie.id})">
                         <img ng-src="{{movie.posters.thumbnail}}" />
                         <h2> {{movie.title}} </h2>
                         <p> {{movie.synopsis}} </p>             
@@ -50,4 +52,6 @@
               </ion-infinite-scroll>
         <ion-content>
     </div>
+</div>
+
 </div>

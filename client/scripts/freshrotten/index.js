@@ -25,7 +25,7 @@ module.exports = function(namespace) {
                 controller: 'main.freshrotten.searchRottenCtrl as searchCtrl'
             });
 
-            $stateProvider.state('movie', {
+            $stateProvider.state('home.movie', {
                 url: '/movie/:movie_id',
                 template: require('./views/moviepage.html'),
                 controller: 'main.freshrotten.movieCtrl as movieCtrl'
