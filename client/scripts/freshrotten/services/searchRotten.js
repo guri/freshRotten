@@ -86,7 +86,7 @@ module.exports = function(app) {
   
                         // prepare restfull query url.
 
-                        movieId = '770672122';
+                        //movieId = '770672122'; //specific movie id for testing.
 
                         var apikey = '7ue5rxaj9xn4mhbmsuexug54';
                         var rottenApiUrl = 'http://api.rottentomatoes.com/api/public/v1.0/movies';
@@ -115,7 +115,8 @@ module.exports = function(app) {
                         // a sample url (that works and return reviews) -
                         //     var sampleUrl = 'http://api.rottentomatoes.com/api/public/v1.0/movies/770672122/reviews.json?review_type=top_critic&page_limit=50&country=us&page=1&apikey=7ue5rxaj9xn4mhbmsuexug54';
                         
-                        movieId = '770672122';
+                        //movieId = '770672122'; //specific movie id for testing.
+
                         var apikey = '7ue5rxaj9xn4mhbmsuexug54';
                         var rottenApiUrl = 'http://api.rottentomatoes.com/api/public/v1.0/movies';
                         var movieIdUrl = "/"+movieId + "/reviews.json?";
