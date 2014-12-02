@@ -11,7 +11,7 @@ module.exports = function(app) {
         var page = 1;  // rotten api return an array limited results with page_limit elements, 
                         // to get more items the page property in query should be used.
 
-        var reviewPage = 1 
+        var reviewPage = 1;
 
         var res = null; // will hold a defer so we can drop previous promises, after query is updated.
 
@@ -83,22 +83,28 @@ module.exports = function(app) {
                         //      http://api.rottentomatoes.com/api/public/v1.0/movies/770672122.json?apikey=[your_api_key]
                         // the api description :
                         //     http://developer.rottentomatoes.com/docs/json/v10/Movie_Info
-                    
-
-                        console.log("movie : -" + movie + "-");
-
+  
                         // prepare restfull query url.
+
+                        movieId = '770672122';
+
                         var apikey = '7ue5rxaj9xn4mhbmsuexug54';
                         var rottenApiUrl = 'http://api.rottentomatoes.com/api/public/v1.0/movies';
                         var movieIdUrl = "/"+movieId + ".json";
-                        var apiKeyUrl = "&apikey=" + apikey;
-                        var requestUrl = rottenApiUrl + apiKeyUrl + '&callback=JSON_CALLBACK';
+                        var apiKeyUrl = "?apikey=" + apikey;
+                        var requestUrl = rottenApiUrl + movieIdUrl + apiKeyUrl + '&callback=JSON_CALLBACK';
  
-                        if (res != null) res.resolve();
+                        //if (res != null) res.resolve();
                         res= $q.defer();
                         res = $http.jsonp(requestUrl);
-
+                        return res;
                     };
+
+
+                    var reviewsReset = function() { // reset page parameter after search box is updated.
+                        reviewPage = 1;
+                    };
+
 
                     var getMovieReviews = function(movieId) {
 
@@ -106,25 +112,31 @@ module.exports = function(app) {
                         //     http://api.rottentomatoes.com/api/public/v1.0/movies/770672122/reviews.json?apikey=[your_api_key]                        
                         // the api description :
                         //     http://developer.rottentomatoes.com/docs/json/v10/Movie_Reviews
-
+                        // a sample url (that works and return reviews) -
+                        //     var sampleUrl = 'http://api.rottentomatoes.com/api/public/v1.0/movies/770672122/reviews.json?review_type=top_critic&page_limit=50&country=us&page=1&apikey=7ue5rxaj9xn4mhbmsuexug54';
+                        
+                        movieId = '770672122';
                         var apikey = '7ue5rxaj9xn4mhbmsuexug54';
-                        var rottenApiUrl = 'http://api.rottentomatoes.com/api/public/v1.0/movies.json';
-                        var movieIdUrl = "/"+movieId + "/reviews.json";
-                        var pageLimitUrl = "&page_limit=50";
-                        var pageUrl = "&page=" + page;
+                        var rottenApiUrl = 'http://api.rottentomatoes.com/api/public/v1.0/movies';
+                        var movieIdUrl = "/"+movieId + "/reviews.json?";
+                        var pageLimitUrl = "page_limit=20";
+                        var pageUrl = "&page=" + reviewPage;
                         var countryUrl = "&country=us";
                         var reviewTypeUrl = "&review_type=top_critic";
                         var apiKeyUrl = "&apikey=" + apikey;
 
                         var requestUrl = rottenApiUrl + movieIdUrl + pageLimitUrl + pageUrl + countryUrl + reviewTypeUrl + apiKeyUrl + '&callback=JSON_CALLBACK';
- 
-                        if (res != null) {
-                            console.log(res);
-                            res.resolve();
-                        };
+
+                        // if (res != null) {
+                        //     console.log(res);
+                        //     res.resolve();
+                        // };
                         res= $q.defer();
                         res = $http.jsonp(requestUrl);
 
+                        reviewPage = reviewPage + 1;
+
+                        return res;
                     }
 
                     return {
@@ -132,7 +144,8 @@ module.exports = function(app) {
                         searchMovies: searchMovies,
                         searchReset: searchReset,
                         getMovieInfo: getMovieInfo,
-                        getMovieReviews: getMovieReviews
+                        getMovieReviews: getMovieReviews,
+                        reviewsReset: reviewsReset
                     };
                 }
             ]

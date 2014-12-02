@@ -26,7 +26,7 @@ module.exports = function(namespace) {
             });
 
             $stateProvider.state('movie', {
-                url: '/movie',
+                url: '/movie/:movie_id',
                 template: require('./views/moviepage.html'),
                 controller: 'main.freshrotten.movieCtrl as movieCtrl'
                 // onEnter: function(movie.id) {
