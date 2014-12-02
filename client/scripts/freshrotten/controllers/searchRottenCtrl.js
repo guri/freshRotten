@@ -51,6 +51,7 @@ module.exports = function(app) {
                 vm.movies = [];
                 console.log(data);
                 vm.movies = data.data.movies;
+                $scope.$broadcast('scroll.infiniteScrollComplete');
             });
 
         };
@@ -58,7 +59,7 @@ module.exports = function(app) {
 
         // support loading more movies for inifinite scroll vs. pagination.
         vm.loadMore = function() {
-            console.log("loadMore");
+            console.log("loadMore movies");
 
  
             if (vm.query == null) {
@@ -72,6 +73,7 @@ module.exports = function(app) {
               vm.movies = vm.movies.concat(data.data.movies);
               $scope.$broadcast('scroll.infiniteScrollComplete');
             });
+
         };
 
         $scope.$on('$stateChangeSuccess', function() {

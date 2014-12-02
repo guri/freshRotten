@@ -45,7 +45,7 @@ module.exports = function() {
             host: '127.0.0.1',
             livereload: 9000,
             port: 5000,
-            localtunnel: true // true, false or 'try-yo-ionic-famous'
+            localtunnel: false // true, false or 'try-yo-ionic-famous'
         },
         mocha: {
             libs: ['server/**/*.js'],
