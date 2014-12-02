@@ -28,8 +28,8 @@
                 <ion-item ng-repeat="movie in searchCtrl.movies track by movie.id">
                     <a class="item item-thumbnail-left" href="#" ui-sref="home.movie({movie_id: movie.id})">
                         <img ng-src="{{movie.posters.thumbnail}}" />
-                        <h2> {{movie.title}} </h2>
-                        <p> {{movie.synopsis}} </p>             
+                        <h2> {{$index}}  {{movie.title}} </h2>
+                        <p> {{movie.synopsis}} </p> 
                     </a>
                 </ion-item>
             </ion-list>

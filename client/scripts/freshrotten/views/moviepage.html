@@ -10,19 +10,29 @@
  -->
 
     <ion-content>
-        <div>
+        <div class="item">
             <img ng-src="{{movieCtrl.movie.posters.thumbnail}}" />
-            <h2> {{movieCtrl.movie.title}} </h2>
+            <h1> {{movieCtrl.movie.title}} </h1>
+            <p>   
+              <h1> Starring : </h1>
+              <span ng-repeat="actor in movieCtrl.movie.abridged_cast">
+                {{actor.name}} ,
+              </span>
+            </p>        
             <p> {{movieCtrl.movie.synopsis}} </p>             
 
+            <h1> Reviews : </h1>
         </div>
 
+
+
         <ion-list>
+
             <ion-item ng-repeat="review in movieCtrl.reviews">
                 <a class="item item-thumbnail-left" ng-href="{{review.links.review}}" target="_blank">
                     <!-- <img ng-src="{{review.posters.thumbnail}}" /> -->
 
-                    <h2> {{review.critic}} </h2>
+                    <h2> {{$index}} {{review.critic}} </h2>
                     <p> {{review.quote}} </p>   
                     <p> {{review.links.review}} </p>          
                 </a>

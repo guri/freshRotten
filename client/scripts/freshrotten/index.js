@@ -28,11 +28,13 @@ module.exports = function(namespace) {
             $stateProvider.state('home.movie', {
                 url: '/movie/:movie_id',
                 template: require('./views/moviepage.html'),
-                controller: 'main.freshrotten.movieCtrl as movieCtrl'
+                controller: 'main.freshrotten.movieCtrl as movieCtrl',
                 // onEnter: function(movie.id) {
                 //     movie = searchRotten.getMovieInfo(movie.id);
                 //     movie = searchRotten.getMovieReviews(movie.id);
                 // }
+
+                deepStateRedirect: true
             });            
         }
     ]);
