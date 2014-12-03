@@ -13,7 +13,7 @@ module.exports = function(namespace) {
     var app = angular.module(fullname, ['ui.router', 'ionic', 'famous.angular']);
     // inject:folders start
     require('./controllers')(app);
-    require('./media')(app);
+    //require('./media')(app);
     require('./services')(app);
 
     // inject:folders end
@@ -24,25 +24,28 @@ module.exports = function(namespace) {
             $stateProvider.state('main', {
                 url: '/',
                 //abstract: true,
-                views: { 
-                    'main': {
-                        template: require('./views/pages_container.html'),
-                        controller: 'main.freshrotten.appCtrl as appCtrl'
-                    }
-                }
+                template: require('./views/pages_container.html'),
+                controller: 'main.freshrotten.appCtrl as appCtrl'
+ 
+                // views: { 
+                //     'main': {
+                //         template: require('./views/pages_container.html'),
+                //         controller: 'main.freshrotten.appCtrl as appCtrl'
+                //     }
+                // }
             });
 
-            $stateProvider.state('home', {
+            $stateProvider.state('main.search', {
                 url: '/search',
                 views: {
-                    'home': {
+                    'search': {
                         template: require('./views/home.html'),
                         controller: 'main.freshrotten.searchRottenCtrl as searchCtrl'
                     }
                 }
             });
 
-            $stateProvider.state('movie', {
+            $stateProvider.state('main.movie', {
                 url: '/movie/:movie_id',
                // onEnter: function(movie.id) {
                 //     movie = searchRotten.getMovieInfo(movie.id);
@@ -55,7 +58,6 @@ module.exports = function(namespace) {
                     }
                 },
 
-                deepStateRedirect: true
             });            
         }
     ]);
