@@ -8,7 +8,7 @@ module.exports = function(app) {
 
     function service() {
         var isInitialized = false;
-        var page = 20;  // rotten api return an array limited results with page_limit elements, 
+        var page = 1;  // rotten api return an array limited results with page_limit elements, 
                         // to get more items the page property in query should be used.
 
         var reviewPage = 1;
@@ -43,7 +43,7 @@ module.exports = function(app) {
                         var apikey = '7ue5rxaj9xn4mhbmsuexug54';
                         var rottenApiUrl = 'http://api.rottentomatoes.com/api/public/v1.0/movies.json';
                         var queryUrl = '?q=' + encodeURIComponent(query);
-                        var pageLimitUrl = "&page_limit=5";
+                        var pageLimitUrl = "&page_limit=50";
                         var pageUrl = "&page=" + page;
                         var apiKeyUrl = "&apikey=" + apikey;
                         var requestUrl = rottenApiUrl + queryUrl + pageLimitUrl + pageUrl + apiKeyUrl + '&callback=JSON_CALLBACK';
@@ -80,7 +80,7 @@ module.exports = function(app) {
                     };
 
                     var searchReset = function() { // reset page parameter after search box is updated.
-                        page = 20;
+                        page = 1;
                     };
 
                     var getMovieInfo = function(movieId) { // get all movie details using rotten rest api.
@@ -133,7 +133,7 @@ module.exports = function(app) {
                         var apikey = '7ue5rxaj9xn4mhbmsuexug54';
                         var rottenApiUrl = 'http://api.rottentomatoes.com/api/public/v1.0/movies';
                         var movieIdUrl = "/"+movieId + "/reviews.json?";
-                        var pageLimitUrl = "page_limit=20";
+                        var pageLimitUrl = "page_limit=50";
                         var pageUrl = "&page=" + reviewPage;
                         var countryUrl = "&country=us";
                         var reviewTypeUrl = "&review_type=top_critic";
