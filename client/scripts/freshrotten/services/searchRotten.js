@@ -8,7 +8,7 @@ module.exports = function(app) {
 
     function service() {
         var isInitialized = false;
-        var page = 1;  // rotten api return an array limited results with page_limit elements, 
+        var page = 20;  // rotten api return an array limited results with page_limit elements, 
                         // to get more items the page property in query should be used.
 
         var reviewPage = 1;
@@ -29,7 +29,13 @@ module.exports = function(app) {
                 function($q, $http) {
 
                     var searchMovies = function(query){
-                        if (query===null || page==26) return [];
+
+                       if (query===null || page>=26) {
+                            res = $q.defer()
+                            res.resolve(null);
+                            return res.promise;
+                        }
+
 
                         console.log("query : -" + query + "-");
 
@@ -37,10 +43,11 @@ module.exports = function(app) {
                         var apikey = '7ue5rxaj9xn4mhbmsuexug54';
                         var rottenApiUrl = 'http://api.rottentomatoes.com/api/public/v1.0/movies.json';
                         var queryUrl = '?q=' + encodeURIComponent(query);
-                        var pageLimitUrl = "&page_limit=50";
+                        var pageLimitUrl = "&page_limit=5";
                         var pageUrl = "&page=" + page;
                         var apiKeyUrl = "&apikey=" + apikey;
                         var requestUrl = rottenApiUrl + queryUrl + pageLimitUrl + pageUrl + apiKeyUrl + '&callback=JSON_CALLBACK';
+                        console.log(requestUrl);
                         
                         // var res = $http.jsonp(requestUrl)
                         //      .success(function(data) {
@@ -73,7 +80,7 @@ module.exports = function(app) {
                     };
 
                     var searchReset = function() { // reset page parameter after search box is updated.
-                        page = 1;
+                        page = 20;
                     };
 
                     var getMovieInfo = function(movieId) { // get all movie details using rotten rest api.
@@ -116,6 +123,12 @@ module.exports = function(app) {
                         //     var sampleUrl = 'http://api.rottentomatoes.com/api/public/v1.0/movies/770672122/reviews.json?review_type=top_critic&page_limit=50&country=us&page=1&apikey=7ue5rxaj9xn4mhbmsuexug54';
                         
                         //movieId = '770672122'; //specific movie id for testing.
+
+                       if (reviewPage>=26) {
+                            res = $q.defer();
+                            res.resolve(null);
+                            return res.promise;
+                        }
 
                         var apikey = '7ue5rxaj9xn4mhbmsuexug54';
                         var rottenApiUrl = 'http://api.rottentomatoes.com/api/public/v1.0/movies';

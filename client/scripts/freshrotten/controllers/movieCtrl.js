@@ -11,6 +11,8 @@ module.exports = function(app) {
 
         vm.reviews = [];
         vm.movie = {};
+        vm.MoreReviewsItems = true;
+
 
         // vm.movie = {
         //         "title":"bla will return",
@@ -66,11 +68,18 @@ module.exports = function(app) {
             console.log("loadMore reviews");
 
             var res = searchRotten.getMovieReviews(vm.movie.id);
+
             res.then(function(data) {
-              console.log(data);
-              vm.reviews = vm.reviews.concat(data.data.reviews);
-              $scope.$broadcast('scroll.infiniteScrollComplete');
-              console.log(vm.reviews);
+                console.log("reviews res :")
+                console.log(data);
+                if (data===null) {
+                    vm.MoreReviewsItems = false;
+                    return;
+                };        
+                console.log(data);
+                vm.reviews = vm.reviews.concat(data.data.reviews);
+                $scope.$broadcast('scroll.infiniteScrollComplete');
+                console.log(vm.reviews);
             });
         };
 

@@ -15,6 +15,8 @@ module.exports = function(app) {
 
         vm.movies = [];
 
+        vm.MoreMoviesItems = true;
+
          /* vm.movies = [
             {
                 "title":"bla will return",
@@ -44,7 +46,7 @@ module.exports = function(app) {
         
         vm.searchUpdated = function(query) {  // call for search in rotten api
             console.log(query);
-
+            vm.MoreMoviesItems = true;
             searchRotten.searchReset();
             var res = searchRotten.searchMovies(query);
             res.then(function(data) {
@@ -66,11 +68,18 @@ module.exports = function(app) {
                 return [];
             }
 
-            var res = searchRotten.searchMovies(vm.query)
+            var res = searchRotten.searchMovies(vm.query);
             res.then(function(data) {
-              console.log(data);
-              vm.movies = vm.movies.concat(data.data.movies);
-              $scope.$broadcast('scroll.infiniteScrollComplete');
+                console.log('promise res :');
+                console.log(data);
+                if (data===null) {
+                    vm.MoreMoviesItems = false;
+                    return;
+                };                
+                console.log('promise res :');
+                console.log(data);
+                vm.movies = vm.movies.concat(data.data.movies);
+                $scope.$broadcast('scroll.infiniteScrollComplete');
             });
         };
 
